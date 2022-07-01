@@ -1,0 +1,37 @@
+const int Boton = 2;     // Pin del Boton
+const int led1 =  9;     // Led Verde
+const int led2 =  10;    // Led Rojo
+const int led3 =  11;    // Led Amarillo
+int n;
+
+void setup() {
+ pinMode(led1, OUTPUT);  
+ pinMode(led2, OUTPUT);
+ pinMode(led3, OUTPUT);
+ pinMode(Boton, INPUT); 
+}
+
+void loop(){
+do {}while(digitalRead(Boton)==LOW);
+do {}while(digitalRead(Boton)==HIGH);  //Espera hasta que se suelta el boton antes de seguir.
+digitalWrite(led1, LOW);               //Apaga los leds.
+digitalWrite(led2, LOW);
+digitalWrite(led3, LOW);
+delay(10);
+n++;    //aumenta el contador del boton.
+if(n>2){n=0;} // Si supera el limite lo restablese
+
+switch (n)    //seleciona el led que corresponde
+ {
+   case 0:    // your hand is on the sensor
+   digitalWrite(led1, HIGH);
+   //if (digitalRead(Boton) == LOW) {digitalWrite(led1, HIGH);} else {digitalWrite(led1, LOW);}
+     break;
+   case 1:    // your hand is close to the sensor
+   digitalWrite(led2, HIGH); 
+     break;
+   case 2:    // your hand is a few inches from the sensor
+   digitalWrite(led3, HIGH); 
+     break;
+  }
+ }
